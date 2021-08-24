@@ -134,7 +134,7 @@ namespace HomeWork.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IActionResult> UpdateFAQ([FromQuery] UpdateFAQApi updateFaq)
+        public async Task<IActionResult> UpdateFAQ(UpdateFAQApi updateFaq)
         {
             try
             {

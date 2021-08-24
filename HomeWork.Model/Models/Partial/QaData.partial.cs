@@ -24,7 +24,7 @@ namespace HomeWork.Model.Models.Partial
             public bool Remove { get; set; }
             public DateTime CrtTime { get; set; }
             public string CrtBy { get; set; }
-            public string UpdateTime { get; set; }
+            public DateTime? UpdateTime { get; set; }
             public string UpdateBy { get; set; }
         }
     }
