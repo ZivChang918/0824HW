@@ -35,13 +35,26 @@ namespace HomeWork.Service.Interface
         /// <returns></returns>
         GetFAQAll GetByKeyWord(SearchModel searchModel);
 
+        /// <summary>
+        /// 取得巢狀(多次讀取)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         IEnumerable<LevelList> GetLevelList(int? id);
+
+        /// <summary>
+        /// 取得巢狀(全讀取)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        IEnumerable<LevelList> GetLevelListAll(int? id);
+
         /// <summary>
         /// 取得單筆詳細
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        FAQ GetByID(int id);
+        Task<FAQ> GetByID(int id);
         /// <summary>
         /// 取得分頁資訊
         /// </summary>
@@ -65,6 +78,12 @@ namespace HomeWork.Service.Interface
         /// <returns></returns>
         string GetFAQUpperName(int? id);
 
+        /// <summary>
+        /// 取得所有上層ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string GetFAQAllUpperId(int? id);
 
         /// <summary>
         /// 搜尋FAQ--前台
@@ -72,6 +91,14 @@ namespace HomeWork.Service.Interface
         /// <param name="id"></param>
         /// <param name="keyWord"></param>
         /// <returns></returns>
-        SearchById SearchById(int? id, string keyWord);
+        Task<SearchById> SearchById(int? id, string keyWord);
+
+        /// <summary>
+        /// 搜尋FAQ--前台(全部)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        IEnumerable<LevelList> SearchAllById(int? id, string keyWord);
     }
 }

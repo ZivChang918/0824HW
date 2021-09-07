@@ -7,10 +7,19 @@ namespace HomeWork.DTO.Model.ApiDTO
 {
     public class SearchModel : Paged
     {
+        /// <summary>
+        /// 關鍵字
+        /// </summary>
         [JsonPropertyName("keyword")]
         public string KeyWord { get; set; }
+        /// <summary>
+        /// 上架時間
+        /// </summary>
         [JsonPropertyName("starton")]
         public DateTime? StartOn { get; set; }
+        /// <summary>
+        /// 下架時間
+        /// </summary>
         [JsonPropertyName("endon")]
         public DateTime? EndOn { get; set; }
     }

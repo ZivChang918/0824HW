@@ -41,7 +41,7 @@ namespace HomeWork.Api.Controllers
                 id = x.id,
                 Sort = x.Sort,
                 UpperId = x.UpperId,
-                UpperName = _faqService.GetFAQUpperName(x.UpperId)
+                UpperName = _faqService.GetFAQUpperName(x.UpperId),
             }).AsQueryable();
 
             var result = new PagedData<GetFAQAll>
@@ -60,8 +60,8 @@ namespace HomeWork.Api.Controllers
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetFAQDetail(int id)
         {
-            var query = _faqService.GetByID(id);
-            var result = new FAQDetail()
+            var query = await _faqService.GetByID(id);
+            var result = new FAQDetailApi()
             {
                 id = query.id,
                 Conten = query.Conten,
@@ -164,23 +164,41 @@ namespace HomeWork.Api.Controllers
         /// 後台-取得層級列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet("level")]
-        public async Task<IActionResult> GetLevelList()
+        [HttpGet("Level")]
+        public async Task<IActionResult> GetLevelList(int? id)
         {
-            var result = _faqService.GetLevelList(null);
+            //var result = _faqService.GetLevelList(id);
+            var result = _faqService.GetLevelListAll(id);
             return Ok(result);
         }
 
+
+
+
+
+
         /// <summary>
-        /// 前台-搜尋FAQ
+        /// 前台-搜尋FAQ(單一層級)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetByKeyWord(int? id,string keyword)
+        public async Task<IActionResult> GetByKeyWord(int? id, string keyword)
         {
-            var result = _faqService.SearchById(id,keyword);
+            var result = _faqService.SearchById(id, keyword);
             return Ok(result);
         }
 
+
+        /// <summary>
+        /// 前台-搜尋FAQ(所有層級)
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("AllLevel")]
+        public async Task<IActionResult> GetByKeyWordAll(int? id, string keyword)
+        {
+            //var result = _faqService.SearchById(id, keyword);
+            var result = _faqService.SearchAllById(id, keyword);
+            return Ok(result);
+        }
     }
 }

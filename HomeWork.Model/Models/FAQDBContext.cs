@@ -72,6 +72,10 @@ namespace HomeWork.Model.Models
                     .HasColumnName("UPDATE_TIME")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.UpperAllid)
+                    .HasColumnName("UPPER_ALLID")
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.UpperId).HasColumnName("UPPER_ID");
             });
 

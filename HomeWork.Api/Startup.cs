@@ -29,10 +29,18 @@ namespace HomeWork.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=LAPTOP-3J4IUMQ9\\ZIVTESTSQL;Database=FAQDB;Trusted_Connection=True;MultipleActiveResultSets=true;user id=sa;password=1qaz!QAZ;";
-            services.AddDbContext<FAQDBContext>(options => options.UseSqlServer(connection));
+            var dblink = Configuration.GetConnectionString("BloggingDatabase");
+            //var dblink = "Server=LAPTOP-3J4IUMQ9\\ZIVTESTSQL;Database=FAQDB;Trusted_Connection=True;MultipleActiveResultSets=true;user id=sa;password=1qaz!QAZ";
+            services.AddDbContext<FAQDBContext>(options => options.UseSqlServer(dblink));
             services.AddScoped<IFAQService, FAQService>();
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
+
+
+            services.AddOpenApiDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +50,9 @@ namespace HomeWork.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseHttpsRedirection();
 

@@ -17,5 +17,6 @@ namespace HomeWork.Model.Models
         public string CrtBy { get; set; }
         public DateTime? UpdateTime { get; set; }
         public string UpdateBy { get; set; }
+        public string UpperAllid { get; set; }
     }
 }

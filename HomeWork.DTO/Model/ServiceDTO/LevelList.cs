@@ -10,6 +10,8 @@ namespace HomeWork.DTO.Model.ServiceDTO
 
         public string Titel { get; set; }
 
+        public string Conten { get; set; }
+
         public int Sort { get; set; }
 
         public int? UpperId { get; set; }

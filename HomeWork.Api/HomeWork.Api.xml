@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HomeWork.Api</name>
+    </assembly>
+    <members>
+        <member name="M:HomeWork.Api.Controllers.FAQController.GetByKeyWord(HomeWork.DTO.Model.ApiDTO.SearchModel)">
+            <summary>
+            後台-搜尋FAQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.GetFAQDetail(System.Int32)">
+            <summary>
+            取得單筆FAQ明細
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.AddFAQ(HomeWork.DTO.Model.ApiDTO.AddFAQApi)">
+            <summary>
+            新增FAQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.DeleteFAQ(System.Int32)">
+            <summary>
+            刪除FAQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.UpdateFAQ(HomeWork.DTO.Model.ApiDTO.UpdateFAQApi)">
+            <summary>
+            更新FAQ詳細
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.GetLevelList(System.Nullable{System.Int32})">
+            <summary>
+            後台-取得層級列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.GetByKeyWord(System.Nullable{System.Int32},System.String)">
+            <summary>
+            前台-搜尋FAQ(單一層級)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.GetByKeyWordAll(System.Nullable{System.Int32},System.String)">
+            <summary>
+            前台-搜尋FAQ(所有層級)
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

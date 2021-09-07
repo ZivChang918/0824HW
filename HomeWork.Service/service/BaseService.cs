@@ -9,7 +9,12 @@ namespace HomeWork.Service.service
 {
     public class BaseService : IBaseService
     {
-        public FAQDBContext db = new FAQDBContext();
+        public readonly FAQDBContext _context;
+
+        public BaseService(FAQDBContext context)
+        {
+            _context = context;
+        }
 
         public void Dispose() { GC.SuppressFinalize(true); }
     }

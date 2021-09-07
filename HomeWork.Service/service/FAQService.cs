@@ -14,8 +14,24 @@ namespace HomeWork.Service.service
 {
     public class FAQService : BaseService, IFAQService
     {
+
+        public FAQService(FAQDBContext context) : base(context)
+        {
+        }
+
+        /// <summary>
+        /// 新增FAQ
+        /// </summary>
+        /// <param name="addFAQ"></param>
+        /// <returns></returns>
         public async Task<bool> AddFAQ(AddFAQ addFAQ)
         {
+            string upperAllId = "";
+            //if (addFAQ.UpperId != null)
+            //{
+            //    upperAllId = GetFAQAllUpperId(addFAQ.UpperId);
+            //}
+
             var data = new QaData
             {
                 Conten = addFAQ.Conten,
@@ -26,31 +42,36 @@ namespace HomeWork.Service.service
                 Sort = addFAQ.Sort,
                 StartOn = addFAQ.StarTime,
                 Title = addFAQ.Title,
-                UpperId = addFAQ.UpperId
+                UpperId = addFAQ.UpperId,
+                UpperAllid = upperAllId
             };
-            await db.QaData.AddAsync(data);
-            var add = await db.SaveChangesAsync();
+            await _context.QaData.AddAsync(data);
+            var add = await _context.SaveChangesAsync();
             if (add >= 0)
                 return true;
             return false;
         }
 
-
+        /// <summary>
+        /// 搜尋列表
+        /// </summary>
+        /// <param name="searchModel"></param>
+        /// <returns></returns>
         public GetFAQAll GetByKeyWord(SearchModel searchModel)
         {
-            var query = db.QaData.Where(x => x.Remove == false).OrderBy(x => x.UpperId).AsQueryable();
+            var query = _context.QaData.Where(x => x.Remove == false).OrderBy(x => x.UpperId).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchModel.KeyWord))
-                query = db.QaData.Where(x =>
+                query = _context.QaData.Where(x =>
                     x.Conten.Contains(searchModel.KeyWord) || x.Title.Contains(searchModel.KeyWord));
 
             if (!(searchModel.StartOn == null))
-                query = db.QaData.Where(x =>
+                query = _context.QaData.Where(x =>
                     x.StartOn >= searchModel.StartOn);
 
 
             if (!(searchModel.EndOn == null))
-                query = db.QaData.Where(x =>
+                query = _context.QaData.Where(x =>
                     x.EndOn <= searchModel.EndOn);
 
             query = searchModel.OrderByName switch
@@ -90,6 +111,13 @@ namespace HomeWork.Service.service
             };
         }
 
+        /// <summary>
+        /// 取得頁數資料
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="paged"></param>
+        /// <returns></returns>
         public async Task<PageList> GetPageList<T>(IQueryable<T> query, Paged paged)
         {
             var totalCount = await query.CountAsync();
@@ -108,12 +136,23 @@ namespace HomeWork.Service.service
             return result;
         }
 
+        /// <summary>
+        /// 分頁
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="paged"></param>
+        /// <returns></returns>
         public IQueryable<T> GetSkipTakeData<T>(IQueryable<T> query, Paged paged)
         {
-
             return query.Skip((paged.NowPage - 1) * paged.PageSize).Take(paged.PageSize);
         }
 
+        /// <summary>
+        /// 取得路徑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetFAQUpperName(int? id)
         {
             var name = "";
@@ -121,7 +160,7 @@ namespace HomeWork.Service.service
             if (id == null)
                 return name;
 
-            var query = db.QaData.FirstOrDefault(x => x.Id == id);
+            var query = _context.QaData.FirstOrDefault(x => x.Id == id);
 
             if (query.UpperId != null)
             {
@@ -133,9 +172,14 @@ namespace HomeWork.Service.service
             return name;
         }
 
-        public FAQ GetByID(int id)
+        /// <summary>
+        /// 取得單筆詳細資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<FAQ> GetByID(int id)
         {
-            var query = db.QaData.FirstOrDefault(x => x.Id == id);
+            var query = await _context.QaData.FirstOrDefaultAsync(x => x.Id == id);
 
 
             var result = new FAQ
@@ -153,22 +197,32 @@ namespace HomeWork.Service.service
             return result;
         }
 
+        /// <summary>
+        /// 刪除FAQ
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> Delete(int id)
         {
-            var query = db.QaData.FirstOrDefault(x => x.Id == id);
+            var query = _context.QaData.FirstOrDefault(x => x.Id == id);
             query.Remove = true;
             query.UpdateBy = "ME";
             query.UpdateTime = DateTime.Now;
-            db.Update(query);
-            var delete = await db.SaveChangesAsync();
+            _context.Update(query);
+            var delete = await _context.SaveChangesAsync();
             if (delete >= 0)
                 return true;
             return false;
         }
 
+        /// <summary>
+        /// 更新FAQ
+        /// </summary>
+        /// <param name="updateFAQ"></param>
+        /// <returns></returns>
         public async Task<bool> UpdateFAQ(FAQ updateFAQ)
         {
-            var query = db.QaData.FirstOrDefault(x => x.Id == updateFAQ.id);
+            var query = _context.QaData.FirstOrDefault(x => x.Id == updateFAQ.id);
             query.Title = updateFAQ.Title;
             query.Conten = updateFAQ.Conten;
             query.Sort = updateFAQ.Sort;
@@ -178,14 +232,20 @@ namespace HomeWork.Service.service
             query.UpdateBy = "me";
             query.UpdateTime = DateTime.Now;
 
-            db.Update(query);
-            var update = await db.SaveChangesAsync();
+            _context.Update(query);
+            var update = await _context.SaveChangesAsync();
             if (update >= 0)
                 return true;
             return false;
         }
 
-        public SearchById SearchById(int? id, string keyword)
+        /// <summary>
+        /// 搜尋搜尋FAQ(單一層級)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public async Task<SearchById> SearchById(int? id, string keyword)
         {
             keyword = string.IsNullOrEmpty(keyword) ? "" : keyword;
 
@@ -195,12 +255,13 @@ namespace HomeWork.Service.service
             }
 
             var query =
-                db.QaData.FirstOrDefault(
+                 _context.QaData.FirstOrDefault(
                  x =>
                  x.Remove == false &&
                  x.StartOn <= DateTime.Now &&
                  (x.EndOn == null || x.EndOn >= DateTime.Now) &&
                  x.Id == id);
+
             if (query == null)
                 return new SearchById();
 
@@ -216,9 +277,15 @@ namespace HomeWork.Service.service
             return result;
         }
 
+        /// <summary>
+        /// 搜尋FAQ指定ID子目標
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         private IEnumerable<SubFAQ> SearchSunById(int? id, string keyword)
         {
-            var result = db.QaData.Where(
+            var result = _context.QaData.Where(
                 x =>
                 x.Remove == false &&
                 x.StartOn <= DateTime.Now &&
@@ -239,19 +306,120 @@ namespace HomeWork.Service.service
             return result;
         }
 
+        /// <summary>
+        /// 巢狀(多次資料表)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<LevelList> GetLevelList(int? id)
         {
-            var query = db.QaData.Where(x => x.UpperId == id).ToList().Select(x=>new LevelList
+            var query = _context.QaData.Where(x => x.UpperId == id).ToList().Select(x => new LevelList
             {
                 id = x.Id,
                 Titel = x.Title,
                 Sort = x.Sort,
                 UpperId = x.UpperId,
+                Conten = x.Conten,
                 SubLevelList = GetLevelList(x.Id),
             });
 
 
             return query;
+        }
+
+        /// <summary>
+        /// 取得上層所有路徑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetFAQAllUpperId(int? id)
+        {
+            if (id == null)
+            {
+                return "";
+            }
+            var query = _context.QaData.FirstOrDefault(x => x.Id == id.Value)?.UpperAllid;
+
+            if (string.IsNullOrEmpty(query))
+                query += ",";
+            query += id + ",";
+
+            return query;
+        }
+
+        /// <summary>
+        /// 巢狀(一次取大量)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<LevelList> GetLevelListAll(int? id)
+        {
+            var query = _context.QaData.Where(x => !x.Remove).AsEnumerable();
+
+            var result = query.Where(x => x.UpperId == id).OrderBy(x => x.Sort).Select(x => new LevelList
+            {
+                UpperId = x.UpperId,
+                id = x.Id,
+                Sort = x.Sort,
+                Titel = x.Title,
+                Conten = x.Conten,
+                SubLevelList = GetAllListById(x.Id, query)
+            });
+
+
+            return result;
+        }
+
+        /// <summary>
+        /// 取得子問題
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        private IEnumerable<LevelList> GetAllListById(int? id, IEnumerable<QaData> query)
+        {
+            if (!query.Any(x => x.UpperId == id))
+                return new List<LevelList>();
+            var result = query.Where(x => x.UpperId == id).Select(x => new LevelList
+            {
+                UpperId = x.UpperId,
+                id = x.Id,
+                Sort = x.Sort,
+                Conten = x.Conten,
+                Titel = x.Title,
+                SubLevelList = GetAllListById(x.Id, query)
+            });
+
+            return result;
+        }
+
+        /// <summary>
+        /// 前台巢狀(一次大量) 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        public IEnumerable<LevelList> SearchAllById(int? id, string keyWord)
+        {
+            var query = _context.QaData.Where(x => !x.Remove && 
+                                                   x.StartOn<=DateTime.Now &&
+                                                   (x.EndOn == null ||
+                                                    x.EndOn >= DateTime.Now)).AsEnumerable();
+
+            var result = query.Where(x => x.UpperId == id).OrderBy(x => x.Sort).Select(x => new LevelList
+            {
+                UpperId = x.UpperId,
+                id = x.Id,
+                Sort = x.Sort,
+                Titel = x.Title,
+                Conten = x.Conten,
+                SubLevelList = GetAllListById(x.Id, query)
+            });
+
+            if (!string.IsNullOrEmpty(keyWord))
+                result = result.Where(x => x.Titel.Contains(keyWord) || x.Conten.Contains(keyWord));
+
+            return result;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HomeWork.DTO.Model.ApiDTO
 {
-    public class FAQDetail :ShareFAQApi
+    public class FAQDetailApi :ShareFAQApi
     {
         /// <summary>
         /// 編號

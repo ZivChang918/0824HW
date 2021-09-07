@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HomeWork.DTO</name>
+    </assembly>
+    <members>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.AddFAQApi.Title">
+            <summary>
+            標題
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.AddFAQApi.StarTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.AddFAQApi.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.UpperName">
+            <summary>
+            上層名稱
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.StarTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.Paged.PageSize">
+            <summary>
+            頁面大小
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.Paged.NowPage">
+            <summary>
+            現在頁面
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.Paged.OrderByName">
+            <summary>
+            排序欄位
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.Paged.OrderBy">
+            <summary>
+            排序方式
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PagedData`1.Datas">
+            <summary>
+            資料集合
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PagedData`1.Paged">
+            <summary>
+            分頁資料
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PageList.PageSize">
+            <summary>
+            分頁大小
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PageList.TotalCount">
+            <summary>
+            總筆數
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PageList.TotalPage">
+            <summary>
+            總頁數
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.PageList.NowPage">
+            <summary>
+            現在頁數
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.UpperName">
+            <summary>
+            上層名稱
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.Id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.Title">
+            <summary>
+            標題
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.Conten">
+            <summary>
+            內容
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.SubSearch">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchModel.KeyWord">
+            <summary>
+            關鍵字
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchModel.StartOn">
+            <summary>
+            上架時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SearchModel.EndOn">
+            <summary>
+            下架時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.ShareFAQApi.Title">
+            <summary>
+            標題
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.ShareFAQApi.Conten">
+            <summary>
+            內容
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.ShareFAQApi.Sort">
+            <summary>
+            順序
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.ShareFAQApi.UpperId">
+            <summary>
+            上層編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.SubFAQ.Id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateFAQApi.id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.AddFAQ.Title">
+            <summary>
+            標題
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.AddFAQ.StarTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.AddFAQ.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.UpperName">
+            <summary>
+            上層名稱
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.StarTime">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.EndTime">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.GetFAQAll.AllFAQs">
+            <summary>
+            所有資料
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.ShareFAQ.Title">
+            <summary>
+            標題
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.ShareFAQ.Conten">
+            <summary>
+            內容
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.ShareFAQ.Sort">
+            <summary>
+            順序
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.ShareFAQ.UpperId">
+            <summary>
+            上層編號
+            </summary>
+        </member>
+    </members>
+</doc>
