@@ -6,7 +6,7 @@ namespace HomeWork.DTO.Model.ServiceDTO
 {
     public class LevelList
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public string Titel { get; set; }
 

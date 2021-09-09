@@ -15,12 +15,12 @@ namespace HomeWork.DTO.Model.ApiDTO
         /// <summary>
         /// 上架時間
         /// </summary>
-        [JsonPropertyName("starton")]
+        [JsonPropertyName("startOn")]
         public DateTime? StartOn { get; set; }
         /// <summary>
         /// 下架時間
         /// </summary>
-        [JsonPropertyName("endon")]
+        [JsonPropertyName("endOn")]
         public DateTime? EndOn { get; set; }
     }
 }

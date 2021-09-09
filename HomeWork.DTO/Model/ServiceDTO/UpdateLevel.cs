@@ -5,20 +5,23 @@ using System.Text;
 
 namespace HomeWork.DTO.Model.ServiceDTO
 {
-    public class FAQ :ShareFAQ
+    public class UpdateLevel
     {
+        
         /// <summary>
         /// 編號
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
-        /// 開始時間
+        /// 上層編號
         /// </summary>
-        public DateTime StarTime { get; set; }
+        public int? UpperId { get; set; }
+
         /// <summary>
-        /// 結束時間
+        /// 排序順序
         /// </summary>
-        public DateTime? EndTime { get; set; }
+        public int Sort { get; set; }
 
     }
 }

@@ -85,6 +85,14 @@ namespace HomeWork.Service.Interface
         /// <returns></returns>
         string GetFAQAllUpperId(int? id);
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updateLevels">母子順序</param>
+        /// <returns></returns>
+        Task<bool> UpdateLevel(IEnumerable<UpdateLevel> updateLevels);
+
         /// <summary>
         /// 搜尋FAQ--前台
         /// </summary>

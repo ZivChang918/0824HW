@@ -27,7 +27,7 @@ namespace HomeWork.DTO.Model.ApiDTO
         public string Conten { get; set; }
 
         /// <summary>
-        /// 
+        /// 子集合
         /// </summary>
         public IEnumerable<SubFAQ> SubSearch { get; set; }
     }

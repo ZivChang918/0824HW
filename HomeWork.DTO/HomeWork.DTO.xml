@@ -19,7 +19,7 @@
             結束時間
             </summary>
         </member>
-        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.id">
+        <member name="P:HomeWork.DTO.Model.ApiDTO.FAQDetailApi.Id">
             <summary>
             編號
             </summary>
@@ -111,7 +111,7 @@
         </member>
         <member name="P:HomeWork.DTO.Model.ApiDTO.SearchById.SubSearch">
             <summary>
-            
+            子集合
             </summary>
         </member>
         <member name="P:HomeWork.DTO.Model.ApiDTO.SearchModel.KeyWord">
@@ -154,9 +154,24 @@
             編號
             </summary>
         </member>
-        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateFAQApi.id">
+        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateFAQApi.Id">
             <summary>
             編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateLevelApi.Id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateLevelApi.UpperId">
+            <summary>
+            上層編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ApiDTO.UpdateLevelApi.Sort">
+            <summary>
+            排序順序
             </summary>
         </member>
         <member name="P:HomeWork.DTO.Model.ServiceDTO.AddFAQ.Title">
@@ -174,14 +189,9 @@
             結束時間
             </summary>
         </member>
-        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.id">
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.Id">
             <summary>
             編號
-            </summary>
-        </member>
-        <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.UpperName">
-            <summary>
-            上層名稱
             </summary>
         </member>
         <member name="P:HomeWork.DTO.Model.ServiceDTO.FAQ.StarTime">
@@ -217,6 +227,21 @@
         <member name="P:HomeWork.DTO.Model.ServiceDTO.ShareFAQ.UpperId">
             <summary>
             上層編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.UpdateLevel.Id">
+            <summary>
+            編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.UpdateLevel.UpperId">
+            <summary>
+            上層編號
+            </summary>
+        </member>
+        <member name="P:HomeWork.DTO.Model.ServiceDTO.UpdateLevel.Sort">
+            <summary>
+            排序順序
             </summary>
         </member>
     </members>

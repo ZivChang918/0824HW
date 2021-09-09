@@ -9,7 +9,7 @@ namespace HomeWork.DTO.Model.ApiDTO
         /// <summary>
         /// 編號
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// 上層名稱
         /// </summary>

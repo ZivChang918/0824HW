@@ -9,6 +9,7 @@ using System.Windows.Data;
 using HomeWork.Service.Interface;
 using HomeWork.DTO.Model.ServiceDTO;
 using HomeWork.DTO.Model.ApiDTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeWork.Api.Controllers
 {
@@ -23,8 +24,9 @@ namespace HomeWork.Api.Controllers
         }
 
         /// <summary>
-        /// 後台-搜尋FAQ
+        /// 平面式列出
         /// </summary>
+        /// <param name="searchModel"></param>
         /// <returns></returns>
         [HttpGet("KeyWord")]
         public async Task<IActionResult> GetByKeyWord([FromQuery] SearchModel searchModel)
@@ -32,17 +34,16 @@ namespace HomeWork.Api.Controllers
             var query = _faqService.GetByKeyWord(searchModel);
             var pagedList = await _faqService.GetPageList(query.AllFAQs, searchModel);
             query.AllFAQs = _faqService.GetSkipTakeData(query.AllFAQs, searchModel);
-            query.AllFAQs = query.AllFAQs.ToList().Select(x => new FAQ
+            query.AllFAQs = query.AllFAQs.Select(x => new FAQ
             {
                 Title = x.Title,
                 Conten = x.Conten,
                 StarTime = x.StarTime,
                 EndTime = x.EndTime,
-                id = x.id,
+                Id = x.Id,
                 Sort = x.Sort,
                 UpperId = x.UpperId,
-                UpperName = _faqService.GetFAQUpperName(x.UpperId),
-            }).AsQueryable();
+            });
 
             var result = new PagedData<GetFAQAll>
             {
@@ -56,6 +57,7 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 取得單筆FAQ明細
         /// </summary>
+        /// <param name="id">FAQ編號</param>
         /// <returns></returns>
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetFAQDetail(int id)
@@ -63,14 +65,13 @@ namespace HomeWork.Api.Controllers
             var query = await _faqService.GetByID(id);
             var result = new FAQDetailApi()
             {
-                id = query.id,
+                Id = query.Id,
                 Conten = query.Conten,
                 Title = query.Title,
                 Sort = query.Sort,
                 StarTime = query.StarTime,
                 EndTime = query.EndTime,
-                UpperId = query.UpperId,
-                UpperName = query.UpperName
+                UpperId = query.UpperId
             };
 
             return Ok(result);
@@ -80,6 +81,7 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 新增FAQ
         /// </summary>
+        /// <param name="addFaqApi">FAQ資料</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddFAQ(AddFAQApi addFaqApi)
@@ -111,6 +113,7 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 刪除FAQ
         /// </summary>
+        /// <param name="id">FAQ編號</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFAQ(int id)
@@ -132,6 +135,7 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 更新FAQ詳細
         /// </summary>
+        /// <param name="updateFaq">更新內容</param>
         /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateFAQ(UpdateFAQApi updateFaq)
@@ -140,7 +144,7 @@ namespace HomeWork.Api.Controllers
             {
                 var updata = new FAQ
                 {
-                    id = updateFaq.id,
+                    Id = updateFaq.Id,
                     Title = updateFaq.Title,
                     Conten = updateFaq.Conten,
                     Sort = updateFaq.Sort,
@@ -163,6 +167,7 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 後台-取得層級列表
         /// </summary>
+        /// <param name="id">層級編號</param>
         /// <returns></returns>
         [HttpGet("Level")]
         public async Task<IActionResult> GetLevelList(int? id)
@@ -172,14 +177,29 @@ namespace HomeWork.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 批次更新母子排序
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("UpdateLevel")]
+        public async Task<IActionResult> UpdateLevel(IEnumerable<UpdateLevelApi> updateLevelApis)
+        {
+            var updateLevel = updateLevelApis.Select(x => new UpdateLevel
+            {
+                UpperId = x.UpperId,
+                Id = x.Id,
+                Sort = x.Id
+            });
 
-
-
-
+           var xx= await _faqService.UpdateLevel(updateLevel);
+            return Ok("");
+        }
 
         /// <summary>
         /// 前台-搜尋FAQ(單一層級)
         /// </summary>
+        /// <param name="id">目錄編號</param>
+        /// <param name="keyword">關鍵字</param>
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetByKeyWord(int? id, string keyword)
@@ -192,6 +212,8 @@ namespace HomeWork.Api.Controllers
         /// <summary>
         /// 前台-搜尋FAQ(所有層級)
         /// </summary>
+        /// <param name="id">目錄編號</param>
+        /// <param name="keyword">關鍵字</param>
         /// <returns></returns>
         [HttpGet("AllLevel")]
         public async Task<IActionResult> GetByKeyWordAll(int? id, string keyword)
@@ -200,5 +222,6 @@ namespace HomeWork.Api.Controllers
             var result = _faqService.SearchAllById(id, keyword);
             return Ok(result);
         }
+
     }
 }

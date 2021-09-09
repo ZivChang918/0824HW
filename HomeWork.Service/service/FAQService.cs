@@ -96,7 +96,7 @@ namespace HomeWork.Service.service
                 .Select(x =>
                     new FAQ
                     {
-                        id = x.Id,
+                        Id = x.Id,
                         Title = x.Title,
                         Conten = x.Conten,
                         StarTime = x.StartOn,
@@ -184,14 +184,13 @@ namespace HomeWork.Service.service
 
             var result = new FAQ
             {
-                id = query.Id,
+                Id = query.Id,
                 Conten = query.Conten,
                 Title = query.Title,
                 Sort = query.Sort,
                 StarTime = query.StartOn,
                 EndTime = query.EndOn,
-                UpperId = query.UpperId,
-                UpperName = GetFAQUpperName(query.UpperId)
+                UpperId = query.UpperId
             };
 
             return result;
@@ -222,7 +221,7 @@ namespace HomeWork.Service.service
         /// <returns></returns>
         public async Task<bool> UpdateFAQ(FAQ updateFAQ)
         {
-            var query = _context.QaData.FirstOrDefault(x => x.Id == updateFAQ.id);
+            var query = _context.QaData.FirstOrDefault(x => x.Id == updateFAQ.Id);
             query.Title = updateFAQ.Title;
             query.Conten = updateFAQ.Conten;
             query.Sort = updateFAQ.Sort;
@@ -315,7 +314,7 @@ namespace HomeWork.Service.service
         {
             var query = _context.QaData.Where(x => x.UpperId == id).ToList().Select(x => new LevelList
             {
-                id = x.Id,
+                Id = x.Id,
                 Titel = x.Title,
                 Sort = x.Sort,
                 UpperId = x.UpperId,
@@ -359,7 +358,7 @@ namespace HomeWork.Service.service
             var result = query.Where(x => x.UpperId == id).OrderBy(x => x.Sort).Select(x => new LevelList
             {
                 UpperId = x.UpperId,
-                id = x.Id,
+                Id = x.Id,
                 Sort = x.Sort,
                 Titel = x.Title,
                 Conten = x.Conten,
@@ -379,11 +378,11 @@ namespace HomeWork.Service.service
         private IEnumerable<LevelList> GetAllListById(int? id, IEnumerable<QaData> query)
         {
             if (!query.Any(x => x.UpperId == id))
-                return new List<LevelList>();
+                return null;
             var result = query.Where(x => x.UpperId == id).Select(x => new LevelList
             {
                 UpperId = x.UpperId,
-                id = x.Id,
+                Id = x.Id,
                 Sort = x.Sort,
                 Conten = x.Conten,
                 Titel = x.Title,
@@ -409,7 +408,7 @@ namespace HomeWork.Service.service
             var result = query.Where(x => x.UpperId == id).OrderBy(x => x.Sort).Select(x => new LevelList
             {
                 UpperId = x.UpperId,
-                id = x.Id,
+                Id = x.Id,
                 Sort = x.Sort,
                 Titel = x.Title,
                 Conten = x.Conten,
@@ -420,6 +419,16 @@ namespace HomeWork.Service.service
                 result = result.Where(x => x.Titel.Contains(keyWord) || x.Conten.Contains(keyWord));
 
             return result;
+        }
+
+        public Task<bool> UpdateLevel(IEnumerable<UpdateLevel> updateLevels)
+        {
+            foreach (var updateLevel in updateLevels)
+            {
+                
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

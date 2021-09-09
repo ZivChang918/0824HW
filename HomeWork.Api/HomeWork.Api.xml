@@ -6,37 +6,49 @@
     <members>
         <member name="M:HomeWork.Api.Controllers.FAQController.GetByKeyWord(HomeWork.DTO.Model.ApiDTO.SearchModel)">
             <summary>
-            後台-搜尋FAQ
+            平面式列出
             </summary>
+            <param name="searchModel"></param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.GetFAQDetail(System.Int32)">
             <summary>
             取得單筆FAQ明細
             </summary>
+            <param name="id">FAQ編號</param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.AddFAQ(HomeWork.DTO.Model.ApiDTO.AddFAQApi)">
             <summary>
             新增FAQ
             </summary>
+            <param name="addFaqApi">FAQ資料</param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.DeleteFAQ(System.Int32)">
             <summary>
             刪除FAQ
             </summary>
+            <param name="id">FAQ編號</param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.UpdateFAQ(HomeWork.DTO.Model.ApiDTO.UpdateFAQApi)">
             <summary>
             更新FAQ詳細
             </summary>
+            <param name="updateFaq">更新內容</param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.GetLevelList(System.Nullable{System.Int32})">
             <summary>
             後台-取得層級列表
+            </summary>
+            <param name="id">層級編號</param>
+            <returns></returns>
+        </member>
+        <member name="M:HomeWork.Api.Controllers.FAQController.UpdateLevel(System.Collections.Generic.IEnumerable{HomeWork.DTO.Model.ApiDTO.UpdateLevelApi})">
+            <summary>
+            批次更新母子排序
             </summary>
             <returns></returns>
         </member>
@@ -44,12 +56,16 @@
             <summary>
             前台-搜尋FAQ(單一層級)
             </summary>
+            <param name="id">目錄編號</param>
+            <param name="keyword">關鍵字</param>
             <returns></returns>
         </member>
         <member name="M:HomeWork.Api.Controllers.FAQController.GetByKeyWordAll(System.Nullable{System.Int32},System.String)">
             <summary>
             前台-搜尋FAQ(所有層級)
             </summary>
+            <param name="id">目錄編號</param>
+            <param name="keyword">關鍵字</param>
             <returns></returns>
         </member>
     </members>
